@@ -15,7 +15,7 @@
     <div class="m-auto w-4/8 py-24">
         <div class="text-center">
             <h1 class="text-5xl uppercase font-bold">
-                Update A User
+                Update User
             </h1>
         </div>
     </div>

@@ -43,13 +43,14 @@ class PersonController extends Controller
         return redirect('/users');
     }
 
-
-    public function edit(Person $person)
+    public function edit($id)
     {
+        $person = Person::find($id);
+
         return view('persons.editperson', compact('person'));
     }
 
-    public function update(Request $request, Person $person)
+    public function update(Request $request, $id)
     {
         $this->validate($request, [
             'name' => 'required',
@@ -57,16 +58,18 @@ class PersonController extends Controller
             'phone' => 'required'
         ]);
 
+        $person = Person::find($id);
+
         $person->update($request->all());
 
-        return redirect('/users');
+        return redirect('/');
     }
 
-
-    public function destroy(Person $person)
+    public function destroy($id)
     {
-        $person->delete();
+        $id = Person::find($id);
+        $id->delete();
 
-        return redirect('/users');
+        return redirect('/');
     }
 }

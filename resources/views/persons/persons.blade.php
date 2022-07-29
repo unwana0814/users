@@ -14,7 +14,14 @@
   </head>
   <body >
      
-    <table class="mx-auto mt-10 pt-10 bg-white rounded-xl drop-shadow-lg space-y-5 w-9/12 shadow-md rounded">
+    <div class="pt-4 text-center">
+      <a href="users/create" 
+      class="border-b-2 pb-2 border-dotted  italic text-gray-500">
+      Add User &rAarr;
+      </a>
+  </div>
+
+    <table class="responsive mx-auto mt-10 pt-10 bg-white rounded-xl drop-shadow-lg space-y-5 w-9/12 shadow-md rounded">
       <thead class="bg-gray-50">
         <tr>
           <th class="p-4 text-left font-bold">ID</th>
@@ -26,19 +33,26 @@
         </tr>
       </thead>
       <tbody class="divide-y divide-gray-300">
+        @foreach ($persons as $person)
         <tr>
-          @foreach ($persons as $person)
-            <td class="p-4">{{ $person->id }}</td>
+          <td class="p-4">{{ $person->id }}</td>
           <td class="p-4">{{ $person->name }}</td>
           <td class="p-4">{{ $person->email }}</td>
           <td class="p-4">{{ $person->phone }}</td>
-         <td class="text-center">
+          <td class="text-center">
+              <form action="/users/{{ $person->id }} }}"  class="pt-2" method="POST">
+
             <a href="users/{{ $person->id }}/edit" class="edit bg-blue-500 p-2 rounded text-white text-l" title="Edit" data-toggle="tooltip">Edit</a>
            
-            @csrf
-            @method('DELETE')
-            <a href="/users/delete, {{ $person->id }}" class="delete p-2 rounded bg-red-500 text-white text-l" title="Delete" data-toggle="tooltip"> Delete</a>
-        </td> 
+              @csrf
+              @method('DELETE')
+
+              <button type="submit" class="border-b-2 pb-2 border-dotted italic text-red-500" style="border:none;" title="delete" onclick="return confirm('ARE YOU SURE YOU WANT TO DELETE')">
+                Delete &rAarr;
+              </button>
+
+          </form>
+                </td> 
       </tr>
       @endforeach
       </tbody>
