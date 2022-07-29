@@ -21,6 +21,7 @@
         </div>
     </div>
     
+    
     <div class="flex justify-center">
             <form action="/users" method="POST">
                 @csrf
